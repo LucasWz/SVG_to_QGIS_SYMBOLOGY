@@ -1,0 +1,7 @@
+main: 
+  fill : param(fill)
+  opacity: param(fill-opacity)
+
+shadow: 
+  fill : param(outline)
+  opacity: param(outline-opacity)
