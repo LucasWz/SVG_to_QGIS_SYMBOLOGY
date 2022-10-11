@@ -2,9 +2,10 @@
 
 ## ❔ Why using a QGis symbol converter ? 
 
-You can use your custom SVG symbols in QGis. However, if you want to change your symbols caracteristics in QGis, you will have to manually edit the SVG file to add QGis parameters as SVG attributes. When you're creating a custom symbols, you often need to make some trials and errors. Thus, this editing step can be a waste of time. **This script aims to automate the step of adding QGis parameters as SVG attributes values to make them readable by QGis**.
+In QGIS You can use your own custom SVG symbols. However, if you want to change your symbols caracteristics in the software, you will have to manually edit the SVG file to add QGis parameters as SVG attributes. When you're creating a custom symbols, you will often need to make some trials and errors. Thus, this editing step can be a waste of time. **This script aims to automate the step of adding QGis parameters as SVG attributes values to make them readable by QGis**.
 
 ## 🔎 Table of correspondance between SVG to QGis
+
 | SVG attribute   | QGis variable           |
 |--               |--                       |
 | opacity         | param(fill-opacity)     |
@@ -13,11 +14,13 @@ You can use your custom SVG symbols in QGis. However, if you want to change your
 | stroke-opacity  | param(outline-opactiy)  | 
 | fill            | param(fill)             |
 
-> :Note: In QGis, you can define only two colors/opacities as variables. One for the fill, and one for the outline. **But, you don't need to use them as intended**. Like the exemple below, you can use the outline color for the "fill" of another object, here the shadow object's fill color. 
+> **_NOTE:_** In QGis, you can define only two colors/opacities as variables. One for the fill, and one for the outline. **But, you don't need to use them as intended**. Like the example below, you can use the outline color for the "fill" of another object, here the shadow object's fill color. 
 
 ## ⚙️ Requirements 
 
-Use `BeautifulSoup4` with  `xml` parser to edit svg files and `yaml` to store configuration. 
+Made with `python 3.10`, not tested with other version. 
+- `BeautifulSoup4` with  `xml` parser to parse and modify svg data ;
+- `pyyaml` to store configuration and reuse it later. 
 
 See `REQUIREMENTS.txt`. 
 
@@ -25,9 +28,9 @@ See `REQUIREMENTS.txt`.
 
 ### 1. **Choose or create your SVG symbol**. 
 
-If you create your own SVG file, make sure to identify properly the parts of your SVG with an clear ID. 
+If you create your own SVG file, make sure to identify properly the parts/objects within your SVG with a clear ID. 
 
-*Here is a exemple of a skull marker 💀 I created with inkscape for a zombi map project. In inkscape, to identify your object, go to `object>object proprety`. Edit the `ID` and click the `define` button.*
+*Here is a example of a skull marker 💀 I created with inkscape for a zombi map project. In inkscape, to identify your object, go to `object>object proprety`. Edit the `ID` and click the `define` button.*
 
 ![](picture/2022-10-10_sreenshot__4.png)
 
@@ -38,15 +41,14 @@ If you create your own SVG file, make sure to identify properly the parts of you
 
 ### 3. Attributes and values configuration
 
-**Create a `.yml` file in the same directory and with the same name than your SVG file**. Edit it with the attributes you want to use in QGis as shown belown in the exemple with : 
+**Create a `.yml` file in the same directory and with the same name than your SVG file**. Edit it with the attributes you want to use in QGis as shown belown in the example with : 
  - **SVG object ID** as first level key ;
-   - then **SVG attributes** as second level keys ;
-   - and **QGis parameter** as value.
+   - then **SVG attributes** as second level keys **:** and **QGis parameter** as value.
 
-*Exemple* :  YAML file to modify two objects in the SVG file. First, the object with `id='main'` with the values as QGis parameters : `fill` and `fill-opacity`. Second, the object with`id=shadow` with the variables `outline-color` and `outline-opacity`.
+*Example* :  YAML file to modify two objects in the SVG file. First, the object with `id='main'` with QGis parameters : `fill` and `fill-opacity`. Second, the object with`id=shadow` with `outline-color` and `outline-opacity`.
 
 ```yaml
-# svg_exemple.yml
+# svg_example.yml
 main: 
   fill : param(fill)
   opacity: param(fill-opacity)
@@ -64,7 +66,7 @@ shadow:
 
 ![](picture/2022-10-10_sreenshot_.png)
 
-*Exemple of some attributes written in the `path` tag with `id='shadow'` in the output `svg_exemple_qgis.svg` :*
+*Example of some attributes written by the script in the `path` tag with `id='shadow'` in the output `svg_example_qgis.svg` :*
 
 ![](picture/2022-10-10_sreenshot__3.png)
 
