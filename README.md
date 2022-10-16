@@ -2,7 +2,7 @@
 
 ## ❔ Why using a QGis symbol converter ? 
 
-In QGIS You can use your own custom SVG symbols. However, if you want to change your symbols caracteristics in the software, you will have to manually edit the SVG file to add QGis parameters as SVG attributes. When you're creating a custom symbols, you will often need to make some trials and errors. Thus, this editing step can be a waste of time. **This script aims to automate the step of adding QGis parameters as SVG attributes values to make them readable by QGis**.
+In QGIS You can use your own custom SVG symbols. However, if you want to change your symbols caracteristics in the software, you will have to manually edit the SVG file to add QGis parameters as SVG attributes. When you're creating a custom symbol, you will often need to make some trials and errors. Thus, this editing step can be a waste of time. **This script aims to automate the step of adding QGis parameters as SVG attributes values to make them readable by QGis**.
 
 ## 🔎 Correspondence table between SVG and QGis
 
